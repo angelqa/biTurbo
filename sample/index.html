@@ -6,7 +6,7 @@
 <title>simple</title>
 
 </head>
-<script src="../lib/biTurbo-min.js" type="text/javascript"></script>
+<script src="../lib/biTurbo.js" type="text/javascript"></script>
 
 
 <body onload="a_checkLoaded();//will start animation when all the images are downloaded"> 
@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
 	function ext_clickTag(){
-		alert("click!")
+		window.open("https://github.com/angelqa/biTurbo")
 	}
 </script>
 <script type="text/javascript">
@@ -51,26 +51,28 @@
 	//Frame 2 Elements
 	a_createDivElement("f2_bkg","img/bkg2.jpg",a_CSS(1,0,0))
 	a_createDivElement("f2_content","img/copyF2.png",a_CSS(0.9,0,0))
-	a_createDivElement("noise","img/aqa_noise_tile.gif",a_CSS(0.05,0,0,300,600))
+	a_createDivElement("noise","img/scanline_refresh.png",a_CSS(0.15,0,-50))
 	a_createDivElement("f2_scanline","img/scanline10.png",a_CSS(0.2,0,0,300,600))
 	a_createDivElement("f2_border","img/f2_border.png",a_CSS(1,0,0))
 
 	//Frame 3 Elements
 	a_createDivElement("f3_bkg","img/bkg3.png",a_CSS(1,0,0))
+	/*
 	a_createDivElement("f3_radial_container_t","",a_CSS(1,0,0,600,600)+" background-color:transparent ; overflow: visible ; ")
 	a_insertionPoint ='f3_radial_container_t'// next elements will be added inside this div	
 			a_createDivElement("f3_radial_a","img/radial.png",a_CSS(1,-400,-400))
 			a_createDivElement("f3_radial_b","img/radial.png",a_CSS(1,400,400))
 	a_insertionPoint ='a_banner_elements'
+	*/
 	a_createDivElement("f3_CTA","img/cta.png",a_CSS(1,55,250))
 	a_createDivElement("f3_codeinTop","img/codein.png",a_CSS(1,0,0,4016))
 	a_createDivElement("f3_codeinBot","img/codein.png",a_CSS(1,0,566,4016))
-	a_createTextElement("text1", "(¬_¬)", "color: #b4dcf5; font-size: 17px;") // primitive support for adding text with custom css. Text elements are created nested inside an automatically created div called with the same name+"_container"
-	a_createDivElement("f3_scanline","img/scanline10.png",a_CSS(0.2,0,0,300,900))
-	a_createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a_width + "px ; height:" + a_height + "px"));
+	a_createTextElement("text1", "(^.^)", "color: #fff; font-size: 23px;") // primitive support for adding text with custom css. Text elements are created nested inside an automatically created div called with the same name+"_container"
+	a_createDivElement("f3_scanline","img/scanline10.png",a_CSS(0.25,0,0,300,900))
+	a_createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a_width + "px ; height:" + a_height + "px"),true);
 
 	//a_setBTN("clickable element name","clickTag Function name","the name of the last frame of the animation to goto on click")
-	a_setBTN("a_banner_elements","ext_clickTag","f_endFrame") // clickable button
+	a_setBTN("a_banner_elements","ext_clickTag","f_clickedFrame") // clickable button
 	//a_createBorder("color",width)
 	a_createBorder("#4ff",2) // creative external frame border
 
@@ -83,6 +85,9 @@
 
 	a_createClass("transparent",a_CSS(0))
 	a_createClass("opaque",a_CSS(1))
+	a_createClass("invisible","display:none ;")
+	a_createClass("visible","display:block ; ")
+
 	a_createClass("a_banner_elements_mask",("overflow: hidden; width: "+ a_width +"px; height: "+ a_height + "px;display: block; position: absolute; margin: 0px;left: 0px; top: 0px;"))
 	a_createClass("f1_html5_initial" , a_CSS(0)+a_tMatrix(0,0.02,null,0,130))
 	a_createClass("f1_html5_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
@@ -90,26 +95,34 @@
 	a_createClass("f1_banner_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
 	a_createClass("f1_ads_initial" , a_CSS(0)+a_tMatrix(120,9,null,-400,130))
 	a_createClass("f1_ads_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
-	a_createClass("f1_flyFront_initial" , a_CSS(null,-2500))
-	a_createClass("f1_flyFront_final" , a_CSS(0,0)+"filter:blur(3px) ; -webkit-filter:blur(3px) ; ")
-	a_createClass("f1_flyBack_initial" , a_CSS(null,-2500)+a_tMatrix(0,.7))
-	a_createClass("f1_flyBack_final" , a_CSS(0,-1000)+"filter:blur(3px) ; -webkit-filter:blur(3px) ; "+a_tMatrix(0,.7))
+	a_createClass("f1_flyFront_initial" , a_tMatrix(0,1,null,-2500))
+	a_createClass("f1_flyFront_final" , a_tMatrix(0,1,null,0))
+	a_createClass("f1_flyBack_initial" , a_tMatrix(0,.7,null,-2500))
+	a_createClass("f1_flyBack_final" ,  a_tMatrix(0,.7,null,-1000))
 	a_createClass("f1_copy_in" , a_CSS(0)+a_tMatrix(0,1,1,50,0))
 	a_createClass("f1_copy_stay" , a_CSS(1)+a_tMatrix(0,1,1,0,0))
 	a_createClass("f1_copy_out" , a_CSS(0)+a_tMatrix(0,1,1,-50,0))
 
 	a_createClass("f2_content_initial" , a_CSS(0.9,0,0,300,1))
 	a_createClass("f2_content_final" , a_CSS(0.9,0,0,300,600))
+	a_createClass("f2_noise_initial" , a_tMatrix(0,1,null,0,0))
+	a_createClass("f2_noise_final" , a_tMatrix(0,1,null,0,650))
 
+	a_createClass("f3_text1_container_out" , a_CSS(1,-128,200))
+	a_createClass("f3_text1_container_in" , a_CSS(1,128,200))
 	a_createClass("f3_CTA_initial" , a_CSS(0)+a_tMatrix(180,0.005,null,0,0))
 	a_createClass("f3_CTA_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
-	a_createClass("f3_code_initial" , a_CSS(null,0))
-	a_createClass("f3_code_final" , a_CSS(1,-1969))
+	a_createClass("f3_code_initial" , a_tMatrix(0,1,null,0))
+	a_createClass("f3_code_final" , a_tMatrix(0,1,null,-1969))
+	a_createClass("f3_bkg_initial" , a_tMatrix(0,2.5,null,-0,-250))
+	a_createClass("f3_bkg_final" , a_tMatrix(0,1,null,0,0))
+
+	/*
 	a_createClass("f3_radialContainer_initial" , a_tMatrix(0,1,1,0,0))
 	a_createClass("f3_radialContainer_final" , a_tMatrix(180,1,1,0,0))
-	a_createClass("f3_f3_radial_a_initial" , a_CSS(0.5) + a_tMatrix(0,4,3,150,0) + "filter:blur(2px) ; -webkit-filter:blur(2px) ; ")
-	a_createClass("f3_f3_radial_a_final" , a_CSS(0.5) + a_tMatrix(0,3,4,-150,0) + "filter:blur(2px) ; -webkit-filter:blur(2px) ; ")
-
+	a_createClass("f3_f3_radial_a_initial" , a_CSS(0.5) + a_tMatrix(0,4,3,150,0) )
+	a_createClass("f3_f3_radial_a_final" , a_CSS(0.5) + a_tMatrix(0,3,4,-150,0) )
+*/
 
 	// DEFINE TWEENS
 
@@ -118,8 +131,8 @@
 
 
 	a_createTween("verySlow",15,0)
-	a_createTween("slow",2,0)
-	a_createTween("instant",0.1,0)
+	a_createTween("slow",5,0)
+	a_createTween("instant",0.1,5)
 	a_createTween("quick_in",0.5,1)
 	a_createTween("quick_out",0.5,2)
 	a_createTween("normal",1,3)
@@ -130,7 +143,7 @@
 
 	//	SETUP the initial classes for all elements
 	a_applyClass("a_banner_elements", "a_banner_elements_mask") // hides elements outside the banner size
-	a_applyClassToAll("transparent")
+	a_applyClassToAll("invisible")
 	a_applyClass("black_bkg","opaque");
 
 
@@ -138,7 +151,7 @@
 	function f_initFrame(){	//define init frame
 		//a_tweenClass("id","nameOfclass","nameOftween",delay)
 		a_clearClassToAll()
-		a_applyClassToAll("transparent")
+		a_applyClassToAll("invisible")
 		a_applyClass("black_bkg","opaque");
 
 		a_tweenClass("f1_bkg","opaque","instant",0)
@@ -169,9 +182,9 @@
 		a_tweenClass("f1_copy1","f1_copy_stay","quick_out",5.2)
 		a_tweenClass("f1_copy1","f1_copy_out","quick_in",8)
 		a_tweenClass("f1_copy2","f1_copy_in","instant",8)
-		a_tweenClass("f1_copy2","f1_copy_stay","quick_out",8.5)
+		a_tweenClass("f1_copy2","f1_copy_stay","quick_out",8.75)
 		a_tweenClass("f1_copy2","f1_copy_out","quick_in",10)
-		a_tweenClass("black_bkg","opaque","normal",10)
+		a_tweenClass("black_bkg","opaque","normal",10.5)
 		a_nextFrameInTimeLine(11);
 	}	
 	
@@ -181,46 +194,43 @@
 		a_clearClass("f2_scanline");
 		a_clearClass("noise");
 		a_clearClass("f2_border");
-		a_tweenClass("black_bkg","transparent","normal",0.1)
+
+		a_tweenClass("black_bkg","transparent","normal",0.5)
+		a_tweenClass("noise","f2_noise_initial","instant",.1)
 		a_tweenClass("f2_content","f2_content_initial","instant",.4)
 		a_tweenClass("f2_content","f2_content_final","verySlow",.6)
-		a_tweenClass("black_bkg","opaque","normal",18)
-		a_nextFrameInTimeLine(19);
+		a_tweenClass("noise","f2_noise_final","slow",0.1)
+		a_tweenClass("noise","f2_noise_initial","instant",5.2)
+		a_tweenClass("noise","f2_noise_final","slow",5.5)
+		a_tweenClass("noise","f2_noise_initial","instant",10.2)
+		a_tweenClass("noise","f2_noise_final","slow",10.5)
+		a_tweenClass("noise","f2_noise_initial","instant",15.2)
+		a_tweenClass("noise","f2_noise_final","slow",15.5)
+		a_tweenClass("black_bkg","opaque","normal",18.5)
+		a_nextFrameInTimeLine(19.5);
 		
 	}
-	function f_endFrame(){
-
+	function f_thirdFrame(){
 		a_clearClass("f3_bkg");
-		a_clearClass("f3_radial_container_t");
-		a_clearClass("f3_radial_a");
-		a_clearClass("f3_radial_b");
 		a_clearClass("f3_CTA");
 		a_clearClass("f3_codeinTop");
 		a_clearClass("f3_codeinBot");
+		a_clearClass("text1_container");
 		a_clearClass("text1");
 		a_clearClass("f3_scanline");
-
-		a_tweenClass("f3_radial_a","f3_f3_radial_a_initial","instant",0.1)
-		a_tweenClass("f3_radial_b","f3_f3_radial_a_initial","instant",0.1)
-		a_tweenClass("f3_radial_container_t","f3_radialContainer_initial","instant",0.1)
-		a_tweenClass("f3_radial_a","f3_f3_radial_a_final","verySlow",0.2)
-		a_tweenClass("f3_radial_b","f3_f3_radial_a_final","verySlow",0.2)
-		a_tweenClass("f3_radial_container_t","f3_radialContainer_final","verySlow",0.2)
+		a_tweenClass("f3_bkg","f3_bkg_initial","instant",0.1)
+		a_tweenClass("text1_container","f3_text1_container_out","instant",0.1)
 		a_tweenClass("f3_CTA","f3_CTA_initial","instant",0.1)
 		a_tweenClass("f3_codeinTop","f3_code_initial","instant",0.1)
 		a_tweenClass("f3_codeinBot","f3_code_initial","instant",0.1)
 		a_tweenClass("f3_codeinTop","f3_code_final","verySlow",0.2)
 		a_tweenClass("f3_codeinBot","f3_code_final","verySlow",0.2)
+		a_tweenClass("f3_bkg","f3_bkg_final","verySlow",0.5)
 
-		a_tweenClass("black_bkg","transparent","normal",0.2)
+		a_tweenClass("black_bkg","transparent","normal",0.6)
 
-		a_tweenClass("f3_CTA","f3_CTA_final","slowBoing",2)
-/*
-	a_createClass("f3_CTA_initial" , a_CSS(0)+a_tMatrix(0,0.02,null,0,0))
-	a_createClass("f3_CTA_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
-	a_createClass("f3_code_initial" , a_CSS(null,-2500))
-	a_createClass("f3_code_final" , a_CSS(0,0))
-*/
+		a_tweenClass("f3_CTA","f3_CTA_final","slowBoing",1.5)
+		a_tweenClass("text1_container","f3_text1_container_in","slowBoing",2.75)
 
 		if(a_loop>0){
 			a_loop--;
@@ -228,6 +238,27 @@
 		}
 	}
 
+	function f_clickedFrame(){
+		a_applyClassToAll("invisible")
+		a_clearClass("f3_bkg");
+		a_clearClass("f3_CTA");
+		a_clearClass("f3_codeinTop");
+		a_clearClass("f3_codeinBot");
+		a_clearClass("text1_container");
+		a_clearClass("text1");
+		a_clearClass("f3_scanline");
+		a_tweenClass("f3_codeinTop","f3_code_final","instant",0.2)
+		a_tweenClass("f3_codeinBot","f3_code_final","instant",0.2)
+		a_tweenClass("f3_bkg","f3_bkg_final","instant",0.2)
+
+		a_applyClass("black_bkg","invisible");
+
+
+		a_tweenClass("f3_CTA","f3_CTA_final","instant",0.2)
+		a_tweenClass("text1_container","f3_text1_container_in","instant",0.2)
+		a_setTimeLine("f_clickedFrame")
+
+	}
 	function f_loopOut(){
 		a_tweenClass("black_bkg","opaque","normal",0.1)
 		a_currentFrameIndex=-1; // index of "f_loop_in"
@@ -235,7 +266,8 @@
 	}
 
 	//define timeline
-	a_setTimeLine("f_initFrame","f_loopIn","f_firstFrame", "f_secondFrame" , "f_endFrame","f_loopOut")
+	a_setTimeLine("f_initFrame","f_loopIn","f_firstFrame", "f_secondFrame" , "f_thirdFrame","f_loopOut")
+	//a_setTimeLine("f_secondFrame","f_endFrame" , "f_loopOut")
 	
 
 </script>
