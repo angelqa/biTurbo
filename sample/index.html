@@ -3,78 +3,76 @@
 <head>
 <meta charset="UTF-8">
 
-<title>simple</title>
-
-</head>
+<title>biTurbo sample banner</title>
 <script src="../lib/biTurbo.js" type="text/javascript"></script>
+</head>
 
 
-<body onload="a_checkLoaded();//will start animation when all the images are downloaded"> 
+<body onload="a.checkLoaded();//will start animation when all the images are downloaded"> 
 
 <div id="a_banner_elements" ></div>
 
 
 <script type="text/javascript">
 	function ext_clickTag(){
-		window.open("https://github.com/angelqa/biTurbo")
+		window.open("https://github.com/angelqa/biTurbo");
 	}
 </script>
 <script type="text/javascript">
 	
-
-	var a_clicked=false;
-	var a_width=300;
-	var a_height=600;
-	var a_debug=true
-	var a_loop=1;
-	var a_insertionPoint ='a_banner_elements'
+	var a = biTurbo.create() ;
+	a.width=300;
+	a.height=600;
+	a.debug=true
+	a.loop=1;
+	a.insertionPoint ='a_banner_elements'
 
 	// 1 add html elements
 
-	a_initStyle();
+	a.initStyle();
 	
 	//  CREATE HTML ELEMENTS
 
-	//a_createDivElement("id_name","CSS styles") creates html dom elements with some initial styling
-	//a_CSS(alpha,x,y,w,h) is a helper function to quickly write commonly used css styles
+	//a.createDivElement("id_name","CSS styles") creates html dom elements with some initial styling
+	//a.acc_CSS(alpha,x,y,w,h) is a helper function to quickly write commonly used css styles
 
 	//Frame 1 Elements
-	a_createDivElement("f1_bkg","img/bkg1.jpg",a_CSS(1,0,0))
-	a_createDivElement("f1_flyBack","img/flying_letters.png",a_CSS(0.5,0,50,4016))
-	a_createDivElement("f1_flyFront","img/flying_letters.png",a_CSS(0.7,0,20,4016))
-	a_createDivElement("f1_html5","img/html5.png",a_CSS(1,50,125))
-	a_createDivElement("f1_banner","img/banner.png",a_CSS(1,25,200))
-	a_createDivElement("f1_ads","img/ads.png",a_CSS(1,180,220))
-	a_createDivElement("f1_copy1","img/copy1.png",a_CSS(1,22,354))
-	a_createDivElement("f1_copy2","img/copy2.png",a_CSS(1,56,354))
+	a.createDivElement("f1_bkg","img/bkg1.jpg",a.acc_CSS(1,0,0));
+	a.createDivElement("f1_flyBack","img/flying_letters.png",a.acc_CSS(0.5,0,50,4016));
+	a.createDivElement("f1_flyFront","img/flying_letters.png",a.acc_CSS(0.7,0,20,4016));
+	a.createDivElement("f1_html5","img/html5.png",a.acc_CSS(1,50,125));
+	a.createDivElement("f1_banner","img/banner.png",a.acc_CSS(1,25,200));
+	a.createDivElement("f1_ads","img/ads.png",a.acc_CSS(1,180,220));
+	a.createDivElement("f1_copy1","img/copy1.png",a.acc_CSS(1,22,354));
+	a.createDivElement("f1_copy2","img/copy2.png",a.acc_CSS(1,56,354));
 
 	//Frame 2 Elements
-	a_createDivElement("f2_bkg","img/bkg2.jpg",a_CSS(1,0,0))
-	a_createDivElement("f2_content","img/copyF2.png",a_CSS(0.9,0,0))
-	a_createDivElement("noise","img/scanline_refresh.png",a_CSS(0.15,0,-50))
-	a_createDivElement("f2_scanline","img/scanline10.png",a_CSS(0.2,0,0,300,600))
-	a_createDivElement("f2_border","img/f2_border.png",a_CSS(1,0,0))
+	a.createDivElement("f2_bkg","img/bkg2.jpg",a.acc_CSS(1,0,0));
+	a.createDivElement("f2_content","img/copyF2.png",a.acc_CSS(0.9,0,0));
+	a.createDivElement("noise","img/scanline_refresh.png",a.acc_CSS(0.15,0,-50));
+	a.createDivElement("f2_scanline","img/scanline10.png",a.acc_CSS(0.2,0,0,300,600));
+	a.createDivElement("f2_border","img/f2_border.png",a.acc_CSS(1,0,0));
 
 	//Frame 3 Elements
-	a_createDivElement("f3_bkg","img/bkg3.png",a_CSS(1,0,0))
+	a.createDivElement("f3_bkg","img/bkg3.png",a.acc_CSS(1,0,0));
 	/*
-	a_createDivElement("f3_radial_container_t","",a_CSS(1,0,0,600,600)+" background-color:transparent ; overflow: visible ; ")
-	a_insertionPoint ='f3_radial_container_t'// next elements will be added inside this div	
-			a_createDivElement("f3_radial_a","img/radial.png",a_CSS(1,-400,-400))
-			a_createDivElement("f3_radial_b","img/radial.png",a_CSS(1,400,400))
-	a_insertionPoint ='a_banner_elements'
+	a.createDivElement("f3_radial_container_t","",a.acc_CSS(1,0,0,600,600)+" background-color:transparent ; overflow: visible ; ")
+	a.insertionPoint ='f3_radial_container_t'// next elements will be added inside this div	
+			a.createDivElement("f3_radial_a","img/radial.png",a.acc_CSS(1,-400,-400))
+			a.createDivElement("f3_radial_b","img/radial.png",a.acc_CSS(1,400,400))
+	a.insertionPoint ='a.banner_elements'
 	*/
-	a_createDivElement("f3_CTA","img/cta.png",a_CSS(1,55,250))
-	a_createDivElement("f3_codeinTop","img/codein.png",a_CSS(1,0,0,4016))
-	a_createDivElement("f3_codeinBot","img/codein.png",a_CSS(1,0,566,4016))
-	a_createTextElement("text1", "(^.^)", "color: #fff; font-size: 23px;") // primitive support for adding text with custom css. Text elements are created nested inside an automatically created div called with the same name+"_container"
-	a_createDivElement("f3_scanline","img/scanline10.png",a_CSS(0.25,0,0,300,900))
-	a_createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a_width + "px ; height:" + a_height + "px"),true);
+	a.createDivElement("f3_CTA","img/cta.png",a.acc_CSS(1,55,250));
+	a.createDivElement("f3_codeinTop","img/codein.png",a.acc_CSS(1,0,0,4016));
+	a.createDivElement("f3_codeinBot","img/codein.png",a.acc_CSS(1,0,566,4016));
+	a.createTextElement("text1", "(^.^)", "color: #fff; font-size: 23px;"); // primitive support for adding text with custom css. Text elements are created nested inside an automatically created div called with the same name+"_container"
+	a.createDivElement("f3_scanline","img/scanline10.png",a.acc_CSS(0.25,0,0,300,900));
+	a.createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a.width + "px ; height:" + a.height + "px"),true);
 
-	//a_setBTN("clickable element name","clickTag Function name","the name of the last frame of the animation to goto on click")
-	a_setBTN("a_banner_elements","ext_clickTag","f_clickedFrame") // clickable button
-	//a_createBorder("color",width)
-	a_createBorder("#4ff",2) // creative external frame border
+	//a.setBTN("clickable element name","clickTag Function name","the name of the last frame of the animation to goto on click")
+	a.setBTN("a_banner_elements","ext_clickTag","f_clickedFrame"); // clickable button
+	//a.createBorder("color",width)
+	a.createBorder("#4ff",2); // creative external frame border
 
 	
 
@@ -83,191 +81,190 @@
 
 	// DEFINE CLASSES for all the banner elements (keyframes)
 
-	a_createClass("transparent",a_CSS(0))
-	a_createClass("opaque",a_CSS(1))
-	a_createClass("invisible","display:none ;")
-	a_createClass("visible","display:block ; ")
+	a.createClass("transparent",a.acc_CSS(0));
+	a.createClass("opaque",a.acc_CSS(1));
+	a.createClass("invisible","display:none ;");
+	a.createClass("visible","display:block ; ");
 
-	a_createClass("a_banner_elements_mask",("overflow: hidden; width: "+ a_width +"px; height: "+ a_height + "px;display: block; position: absolute; margin: 0px;left: 0px; top: 0px;"))
-	a_createClass("f1_html5_initial" , a_CSS(0)+a_tMatrix(0,0.02,null,0,130))
-	a_createClass("f1_html5_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
-	a_createClass("f1_banner_initial" , a_CSS(0)+a_tMatrix(0,0.02,null,0,90))
-	a_createClass("f1_banner_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
-	a_createClass("f1_ads_initial" , a_CSS(0)+a_tMatrix(120,9,null,-400,130))
-	a_createClass("f1_ads_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
-	a_createClass("f1_flyFront_initial" , a_tMatrix(0,1,null,-2500))
-	a_createClass("f1_flyFront_final" , a_tMatrix(0,1,null,0))
-	a_createClass("f1_flyBack_initial" , a_tMatrix(0,.7,null,-2500))
-	a_createClass("f1_flyBack_final" ,  a_tMatrix(0,.7,null,-1000))
-	a_createClass("f1_copy_in" , a_CSS(0)+a_tMatrix(0,1,1,50,0))
-	a_createClass("f1_copy_stay" , a_CSS(1)+a_tMatrix(0,1,1,0,0))
-	a_createClass("f1_copy_out" , a_CSS(0)+a_tMatrix(0,1,1,-50,0))
+	a.createClass("a_banner_elements_mask",("overflow: hidden; width: "+ a.width +"px; height: "+ a.height + "px;display: block; position: absolute; margin: 0px;left: 0px; top: 0px;"));
+	a.createClass("f1_html5_initial" , a.acc_CSS(0)+a.tMatrix(0,0.02,null,0,130));
+	a.createClass("f1_html5_final" , a.acc_CSS(1)+a.tMatrix(0,1,null,0,0));
+	a.createClass("f1_banner_initial" , a.acc_CSS(0)+a.tMatrix(0,0.02,null,0,90));
+	a.createClass("f1_banner_final" , a.acc_CSS(1)+a.tMatrix(0,1,null,0,0));
+	a.createClass("f1_ads_initial" , a.acc_CSS(0)+a.tMatrix(120,9,null,-400,130));
+	a.createClass("f1_ads_final" , a.acc_CSS(1)+a.tMatrix(0,1,null,0,0));
+	a.createClass("f1_flyFront_initial" , a.tMatrix(0,1,null,-2500));
+	a.createClass("f1_flyFront_final" , a.tMatrix(0,1,null,0));
+	a.createClass("f1_flyBack_initial" , a.tMatrix(0,.7,null,-2500));
+	a.createClass("f1_flyBack_final" ,  a.tMatrix(0,.7,null,-1000));
+	a.createClass("f1_copy_in" , a.acc_CSS(0)+a.tMatrix(0,1,1,50,0));
+	a.createClass("f1_copy_stay" , a.acc_CSS(1)+a.tMatrix(0,1,1,0,0));
+	a.createClass("f1_copy_out" , a.acc_CSS(0)+a.tMatrix(0,1,1,-50,0));
 
-	a_createClass("f2_content_initial" , a_CSS(0.9,0,0,300,1))
-	a_createClass("f2_content_final" , a_CSS(0.9,0,0,300,600))
-	a_createClass("f2_noise_initial" , a_tMatrix(0,1,null,0,0))
-	a_createClass("f2_noise_final" , a_tMatrix(0,1,null,0,650))
+	a.createClass("f2_content_initial" , a.acc_CSS(0.9,0,0,300,1));
+	a.createClass("f2_content_final" , a.acc_CSS(0.9,0,0,300,600));
+	a.createClass("f2_noise_initial" , a.tMatrix(0,1,null,0,0));
+	a.createClass("f2_noise_final" , a.tMatrix(0,1,null,0,650));
 
-	a_createClass("f3_text1_container_out" , a_CSS(1,-128,200))
-	a_createClass("f3_text1_container_in" , a_CSS(1,128,200))
-	a_createClass("f3_CTA_initial" , a_CSS(0)+a_tMatrix(180,0.005,null,0,0))
-	a_createClass("f3_CTA_final" , a_CSS(1)+a_tMatrix(0,1,null,0,0))
-	a_createClass("f3_code_initial" , a_tMatrix(0,1,null,0))
-	a_createClass("f3_code_final" , a_tMatrix(0,1,null,-1969))
-	a_createClass("f3_bkg_initial" , a_tMatrix(0,2.5,null,-0,-250))
-	a_createClass("f3_bkg_final" , a_tMatrix(0,1,null,0,0))
+	a.createClass("f3_text1_container_out" , a.acc_CSS(1,-128,200));
+	a.createClass("f3_text1_container_in" , a.acc_CSS(1,128,200));
+	a.createClass("f3_CTA_initial" , a.tMatrix(180,0.005,null,0,0));
+	a.createClass("f3_CTA_final" , a.acc_CSS(1)+a.tMatrix(0,1,null,0,0));
+	a.createClass("f3_code_initial" , a.tMatrix(0,1,null,0));
+	a.createClass("f3_code_final" , a.tMatrix(0,1,null,-1969));
+	a.createClass("f3_bkg_initial" , a.tMatrix(0,2.5,null,-0,-250));
+	a.createClass("f3_bkg_final" , a.tMatrix(0,1,null,0,0));
 
 	/*
-	a_createClass("f3_radialContainer_initial" , a_tMatrix(0,1,1,0,0))
-	a_createClass("f3_radialContainer_final" , a_tMatrix(180,1,1,0,0))
-	a_createClass("f3_f3_radial_a_initial" , a_CSS(0.5) + a_tMatrix(0,4,3,150,0) )
-	a_createClass("f3_f3_radial_a_final" , a_CSS(0.5) + a_tMatrix(0,3,4,-150,0) )
+	a.createClass("f3_radialContainer_initial" , a.tMatrix(0,1,1,0,0))
+	a.createClass("f3_radialContainer_final" , a.tMatrix(180,1,1,0,0))
+	a.createClass("f3_f3_radial_a.initial" , a.acc_CSS(0.5) + a.tMatrix(0,4,3,150,0) )
+	a.createClass("f3_f3_radial_a.final" , a.acc_CSS(0.5) + a.tMatrix(0,3,4,-150,0) )
 */
 
 	// DEFINE TWEENS
 
-	//a_createTween("name",duration,easing)
+	//a.createTween("name",duration,easing)
 	// easing : 0 lin / 1 easeIn / 2 easeOut / 3 easeInOut / 4 bounce
 
 
-	a_createTween("verySlow",15,0)
-	a_createTween("slow",5,0)
-	a_createTween("instant",0.1,5)
-	a_createTween("quick_in",0.5,1)
-	a_createTween("quick_out",0.5,2)
-	a_createTween("normal",1,3)
-	a_createTween("boing",1,4)
-	a_createTween("slowBoing",2,4)
+	a.createTween("verySlow",15,0);
+	a.createTween("slow",5,0);
+	a.createTween("instant",0.1,5);
+	a.createTween("quick_in",0.5,1);
+	a.createTween("quick_out",0.5,2);
+	a.createTween("normal",1,3);
+	a.createTween("boing",1,4);
+	a.createTween("slowBoing",2,4);
 
 
 
 	//	SETUP the initial classes for all elements
-	a_applyClass("a_banner_elements", "a_banner_elements_mask") // hides elements outside the banner size
-	a_applyClassToAll("invisible")
-	a_applyClass("black_bkg","opaque");
+	a.applyClass("a_banner_elements", "a_banner_elements_mask"); // hides elements outside the banner size
+	a.applyClassToAll("invisible");
+	a.applyClass("black_bkg","opaque");
 
 
 	//define a function for each frame in timeline
 	function f_initFrame(){	//define init frame
-		//a_tweenClass("id","nameOfclass","nameOftween",delay)
-		a_clearClassToAll()
-		a_applyClassToAll("invisible")
-		a_applyClass("black_bkg","opaque");
+		//a.tweenClass("id","nameOfclass","nameOftween",delay)
+		a.clearClassToAll();
+		a.applyClassToAll("invisible");
+		a.applyClass("black_bkg","opaque");
 
-		a_tweenClass("f1_bkg","opaque","instant",0)
-		a_tweenClass("f1_flyBack","f1_flyBack_initial","instant",0)
-		a_tweenClass("f1_flyFront","f1_flyFront_initial","instant",0)
-		a_nextFrameInTimeLine(0.1);
+		a.tweenClass("f1_bkg","opaque","instant",0);
+		a.tweenClass("f1_flyBack","f1_flyBack_initial","instant",0);
+		a.tweenClass("f1_flyFront","f1_flyFront_initial","instant",0);
+		a.nextFrameInTimeLine(0.1);
 	}
 	
 	function f_loopIn(){
-		//a_clearClass("p1");
-		a_tweenClass("f1_bkg","opaque","instant",0)
-		a_tweenClass("f1_flyBack","f1_flyBack_initial","instant",0)
-		a_tweenClass("f1_flyFront","f1_flyFront_initial","instant",0)
-		a_nextFrameInTimeLine(0.1); // fix for explorer
+		//a.clearClass("p1");
+		a.tweenClass("f1_bkg","opaque","instant",0);
+		a.tweenClass("f1_flyBack","f1_flyBack_initial","instant",0);
+		a.tweenClass("f1_flyFront","f1_flyFront_initial","instant",0);
+		a.nextFrameInTimeLine(0.1); // fix for explorer
 	}
 
 	function f_firstFrame(){
-		a_tweenClass("black_bkg","transparent","normal",0.3)
-		a_tweenClass("f1_flyBack","f1_flyBack_final","verySlow",0.1)
-		a_tweenClass("f1_flyFront","f1_flyFront_final","verySlow",0.1)
-		a_tweenClass("f1_html5","f1_html5_initial","instant",2)
-		a_tweenClass("f1_html5","f1_html5_final","boing",2.2)
-		a_tweenClass("f1_banner","f1_banner_initial","instant",3)
-		a_tweenClass("f1_banner","f1_banner_final","boing",3.2)
-		a_tweenClass("f1_ads","f1_ads_initial","instant",4)
-		a_tweenClass("f1_ads","f1_ads_final","boing",4.2)
-		a_tweenClass("f1_copy1","f1_copy_in","instant",5)
-		a_tweenClass("f1_copy1","f1_copy_stay","quick_out",5.2)
-		a_tweenClass("f1_copy1","f1_copy_out","quick_in",8)
-		a_tweenClass("f1_copy2","f1_copy_in","instant",8)
-		a_tweenClass("f1_copy2","f1_copy_stay","quick_out",8.75)
-		a_tweenClass("f1_copy2","f1_copy_out","quick_in",10)
-		a_tweenClass("black_bkg","opaque","normal",10.5)
-		a_nextFrameInTimeLine(11);
+		a.tweenClass("black_bkg","transparent","normal",0.3);
+		a.tweenClass("f1_flyBack","f1_flyBack_final","verySlow",0.1);
+		a.tweenClass("f1_flyFront","f1_flyFront_final","verySlow",0.1);
+		a.tweenClass("f1_html5","f1_html5_initial","instant",2);
+		a.tweenClass("f1_html5","f1_html5_final","boing",2.2);
+		a.tweenClass("f1_banner","f1_banner_initial","instant",3);
+		a.tweenClass("f1_banner","f1_banner_final","boing",3.2);
+		a.tweenClass("f1_ads","f1_ads_initial","instant",4);
+		a.tweenClass("f1_ads","f1_ads_final","boing",4.2);
+		a.tweenClass("f1_copy1","f1_copy_in","instant",5);
+		a.tweenClass("f1_copy1","f1_copy_stay","quick_out",5.2);
+		a.tweenClass("f1_copy1","f1_copy_out","quick_in",8);
+		a.tweenClass("f1_copy2","f1_copy_in","instant",8);
+		a.tweenClass("f1_copy2","f1_copy_stay","quick_out",8.75);
+		a.tweenClass("f1_copy2","f1_copy_out","quick_in",10);
+		a.tweenClass("black_bkg","opaque","normal",10.5);
+		a.nextFrameInTimeLine(11);
 	}	
 	
 	function f_secondFrame(){
 
-		a_tweenClass("f2_bkg","opaque","instant",0)
-		a_clearClass("f2_scanline");
-		a_clearClass("noise");
-		a_clearClass("f2_border");
+		a.tweenClass("f2_bkg","opaque","instant",0);
+		a.clearClass("f2_scanline");
+		a.clearClass("noise");
+		a.clearClass("f2_border");
 
-		a_tweenClass("black_bkg","transparent","normal",0.5)
-		a_tweenClass("noise","f2_noise_initial","instant",.1)
-		a_tweenClass("f2_content","f2_content_initial","instant",.4)
-		a_tweenClass("f2_content","f2_content_final","verySlow",.6)
-		a_tweenClass("noise","f2_noise_final","slow",0.1)
-		a_tweenClass("noise","f2_noise_initial","instant",5.2)
-		a_tweenClass("noise","f2_noise_final","slow",5.5)
-		a_tweenClass("noise","f2_noise_initial","instant",10.2)
-		a_tweenClass("noise","f2_noise_final","slow",10.5)
-		a_tweenClass("noise","f2_noise_initial","instant",15.2)
-		a_tweenClass("noise","f2_noise_final","slow",15.5)
-		a_tweenClass("black_bkg","opaque","normal",18.5)
-		a_nextFrameInTimeLine(19.5);
+		a.tweenClass("black_bkg","transparent","normal",0.5);
+		a.tweenClass("noise","f2_noise_initial","instant",.1);
+		a.tweenClass("f2_content","f2_content_initial","instant",.4);
+		a.tweenClass("f2_content","f2_content_final","verySlow",.6);
+		a.tweenClass("noise","f2_noise_final","slow",0.1);
+		a.tweenClass("noise","f2_noise_initial","instant",5.2);
+		a.tweenClass("noise","f2_noise_final","slow",5.5);
+		a.tweenClass("noise","f2_noise_initial","instant",10.2);
+		a.tweenClass("noise","f2_noise_final","slow",10.5);
+		a.tweenClass("noise","f2_noise_initial","instant",15.2);
+		a.tweenClass("noise","f2_noise_final","slow",15.5);
+		a.tweenClass("black_bkg","opaque","normal",18.5);
+		a.nextFrameInTimeLine(19.5);
 		
 	}
 	function f_thirdFrame(){
-		a_clearClass("f3_bkg");
-		a_clearClass("f3_CTA");
-		a_clearClass("f3_codeinTop");
-		a_clearClass("f3_codeinBot");
-		a_clearClass("text1_container");
-		a_clearClass("text1");
-		a_clearClass("f3_scanline");
-		a_tweenClass("f3_bkg","f3_bkg_initial","instant",0.1)
-		a_tweenClass("text1_container","f3_text1_container_out","instant",0.1)
-		a_tweenClass("f3_CTA","f3_CTA_initial","instant",0.1)
-		a_tweenClass("f3_codeinTop","f3_code_initial","instant",0.1)
-		a_tweenClass("f3_codeinBot","f3_code_initial","instant",0.1)
-		a_tweenClass("f3_codeinTop","f3_code_final","verySlow",0.2)
-		a_tweenClass("f3_codeinBot","f3_code_final","verySlow",0.2)
-		a_tweenClass("f3_bkg","f3_bkg_final","verySlow",0.5)
+		a.clearClass("f3_bkg");
+		a.clearClass("f3_CTA");
+		a.clearClass("f3_codeinTop");
+		a.clearClass("f3_codeinBot");
+		a.clearClass("text1_container");
+		a.clearClass("text1");
+		a.clearClass("f3_scanline");
+		a.tweenClass("f3_bkg","f3_bkg_initial","instant",0.1);
+		a.tweenClass("text1_container","f3_text1_container_out","instant",0.1);
+		a.tweenClass("f3_CTA","f3_CTA_initial","instant",0.3);
+		a.tweenClass("f3_codeinTop","f3_code_initial","instant",0.1);
+		a.tweenClass("f3_codeinBot","f3_code_initial","instant",0.1);
+		a.tweenClass("f3_codeinTop","f3_code_final","verySlow",0.2);
+		a.tweenClass("f3_codeinBot","f3_code_final","verySlow",0.2);
+		a.tweenClass("f3_bkg","f3_bkg_final","verySlow",0.5);
 
-		a_tweenClass("black_bkg","transparent","normal",0.6)
+		a.tweenClass("black_bkg","transparent","normal",0.6);
 
-		a_tweenClass("f3_CTA","f3_CTA_final","slowBoing",1.5)
-		a_tweenClass("text1_container","f3_text1_container_in","slowBoing",2.75)
+		a.tweenClass("f3_CTA","f3_CTA_final","slowBoing",1.5);
+		a.tweenClass("text1_container","f3_text1_container_in","slowBoing",2.75);
 
-		if(a_loop>0){
-			a_loop--;
-			a_nextFrameInTimeLine(14);
+		if(a.loop>0){
+			a.loop--;
+			a.nextFrameInTimeLine(14);
 		}
 	}
 
 	function f_clickedFrame(){
-		a_applyClassToAll("invisible")
-		a_clearClass("f3_bkg");
-		a_clearClass("f3_CTA");
-		a_clearClass("f3_codeinTop");
-		a_clearClass("f3_codeinBot");
-		a_clearClass("text1_container");
-		a_clearClass("text1");
-		a_clearClass("f3_scanline");
-		a_tweenClass("f3_codeinTop","f3_code_final","instant",0.2)
-		a_tweenClass("f3_codeinBot","f3_code_final","instant",0.2)
-		a_tweenClass("f3_bkg","f3_bkg_final","instant",0.2)
+		a.applyClassToAll("invisible");
+		a.clearClass("f3_bkg");
+		a.clearClass("f3_CTA");
+		a.clearClass("f3_codeinTop");
+		a.clearClass("f3_codeinBot");
+		a.clearClass("text1_container");
+		a.clearClass("text1");
+		a.clearClass("f3_scanline");
+		a.tweenClass("f3_codeinTop","f3_code_final","instant",0.2);
+		a.tweenClass("f3_codeinBot","f3_code_final","instant",0.2);
+		a.tweenClass("f3_bkg","f3_bkg_final","instant",0.2);
 
-		a_applyClass("black_bkg","invisible");
+		a.applyClass("black_bkg","invisible");
 
 
-		a_tweenClass("f3_CTA","f3_CTA_final","instant",0.2)
-		a_tweenClass("text1_container","f3_text1_container_in","instant",0.2)
-		a_setTimeLine("f_clickedFrame")
+		a.tweenClass("f3_CTA","f3_CTA_final","instant",0.2);
+		a.tweenClass("text1_container","f3_text1_container_in","instant",0.2);
+		a.setTimeLine("f_clickedFrame");
 
 	}
 	function f_loopOut(){
-		a_tweenClass("black_bkg","opaque","normal",0.1)
-		a_currentFrameIndex=-1; // index of "f_loop_in"
-		a_nextFrameInTimeLine(1);
+		a.tweenClass("black_bkg","opaque","normal",0.1);
+		a.currentFrameIndex=-1; // index of "f_loop_in"
+		a.nextFrameInTimeLine(1);
 	}
 
 	//define timeline
-	a_setTimeLine("f_initFrame","f_loopIn","f_firstFrame", "f_secondFrame" , "f_thirdFrame","f_loopOut")
-	//a_setTimeLine("f_secondFrame","f_endFrame" , "f_loopOut")
+	a.setTimeLine("f_initFrame","f_loopIn","f_firstFrame", "f_secondFrame" , "f_thirdFrame","f_loopOut");
 	
 
 </script>
