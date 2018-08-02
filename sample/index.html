@@ -8,7 +8,7 @@
 </head>
 
 
-<body onload="a.checkLoaded();//will start animation when all the images are downloaded"> 
+<body> 
 
 <div id="a_banner_elements" ></div>
 
@@ -21,15 +21,16 @@
 <script type="text/javascript">
 	
 	var a = biTurbo.create() ;
-	a.width=300;
-	a.height=600;
-	a.debug=true
-	a.loop=1;
-	a.insertionPoint ='a_banner_elements'
+	a.width = 300;
+	a.height = 600;
+	a.debug = true
+	a.loop = 1;
+	a.insertionPoint = 'a_banner_elements';
 
 	// 1 add html elements
 
 	a.initStyle();
+	a.startWhenLoadedEnough();
 	
 	//  CREATE HTML ELEMENTS
 
@@ -45,7 +46,6 @@
 	a.createDivElement("f1_ads","img/ads.png",a.acc_CSS(1,180,220));
 	a.createDivElement("f1_copy1","img/copy1.png",a.acc_CSS(1,22,354));
 	a.createDivElement("f1_copy2","img/copy2.png",a.acc_CSS(1,56,354));
-	a.addImagesToPreloadQueue = false; //stop the preload queue at the first frame assets
 	//Frame 2 Elements
 	a.createDivElement("f2_bkg","img/bkg2.jpg",a.acc_CSS(1,0,0));
 	a.createDivElement("f2_content","img/copyF2.png",a.acc_CSS(0.9,0,0));
@@ -53,6 +53,7 @@
 	a.createDivElement("f2_scanline","img/scanline10.png",a.acc_CSS(0.2,0,0,300,600));
 	a.createDivElement("f2_border","img/f2_border.png",a.acc_CSS(1,0,0));
 
+	a.addImagesToPreloadQueue = false; //stop the preload queue at the first frame assets
 	//Frame 3 Elements
 	a.createDivElement("f3_bkg","img/bkg3.png",a.acc_CSS(1,0,0));
 	/*
