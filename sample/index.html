@@ -63,16 +63,17 @@
 			a.createDivElement("f3_radial_b","img/radial.png",a.acc_CSS(1,400,400))
 	a.insertionPoint ='a.banner_elements'
 	*/
-	a.createDivElement("f3_CTA","img/cta.png",a.acc_CSS(1,55,250));
+	a.createDivElement("f3_CTA","img/cta.png",a.acc_CSS(1,55,250)); // intesresting for :hover
+	//a.createDivElement("f3_CTA","img/cta.png",a.acc_CSS(1,55,250)+ " z-index : 5; "); // intesresting for :hover
 	a.createDivElement("f3_codeinTop","img/codein.png",a.acc_CSS(1,0,0,4016));
 	a.createDivElement("f3_codeinBot","img/codein.png",a.acc_CSS(1,0,566,4016));
 	a.createTextElement("text1", "(^.^)", "color: #fff; font-size: 23px;"); // primitive support for adding text with custom css. Text elements are created nested inside an automatically created div called with the same name+"_container"
 	a.createDivElement("f3_scanline","img/scanline10.png",a.acc_CSS(0.25,0,0,300,900));
-	a.createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a.width + "px ; height:" + a.height + "px"),true);
+	a.createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a.width + "px ; height:" + a.height + "px ; " ),true);
 
 	//a.setBTN("clickable element name","click user Function name", bool:stopsTheCreative? , "the name of the last frame of the animation to goto on click")
-	//a.setBTN("a_banner_elements","ext_clickTag" , true , "f_clickedFrame"); // clickable button
-	a.setBTN("a_banner_elements","ext_clickTag" ); // clickable button
+	a.setBTN("a_banner_elements","ext_clickTag" , true , "f_clickedFrame"); // clickable button
+	//a.setBTN("a_banner_elements","ext_clickTag" ); // clickable button
 	//a.createBorder("color",width)
 	a.createBorder("#4ff",2); // creative external frame border
 
@@ -112,6 +113,12 @@
 	a.createClass("f3_text1_container_in" , a.acc_CSS(1,128,200));
 	a.createClass("f3_CTA_initial" , a.tMatrix(180,0.005,null,0,0));
 	a.createClass("f3_CTA_final" , a.acc_CSS(1)+a.tMatrix(0,1,null,0,0));
+	//a.createClass("f3_CTA:hover" , a.tMatrix(0,1.5,null,0,0)) ; // care about z-index
+	/*.button:hover {
+background-color: #3e8e41;
+transform: translateY(-4px);
+}
+*/
 	a.createClass("f3_code_initial" , a.tMatrix(0,1,null,0));
 	a.createClass("f3_code_final" , a.tMatrix(0,1,null,-1969));
 	a.createClass("f3_bkg_initial" , a.tMatrix(0,2.5,null,-0,-250));
@@ -149,64 +156,75 @@
 
 	//define a function for each frame in timeline
 	function f_initFrame(){	//define init frame
-		//a.tweenClass("id","nameOfclass","nameOftween",delay)
+		//a.tweenClass("id","nameOfclass", delay , "nameOftween")
 		//a.clearClassToAll();
 		a.applyClassToAll("invisible");
 		a.applyClass("black_bkg","opaque");
 
-		a.tweenClass("f1_bkg","opaque","instant",0);
-		a.tweenClass("f1_flyBack","f1_flyBack_initial","instant",0);
-		a.tweenClass("f1_flyFront","f1_flyFront_initial","instant",0);
+		a.tweenClass("f1_bkg","opaque", 0 ,"instant");
+		a.tweenClass("f1_flyBack","f1_flyBack_initial", 0 , "instant");
+		a.tweenClass("f1_flyFront","f1_flyFront_initial", 0 , "instant");
 		a.nextFrameInTimeLine(0.1);
 	}
 	
 	function f_loopIn(){
 		//a.clearClass("p1");
-		a.tweenClass("f1_bkg","opaque","instant",0);
-		a.tweenClass("f1_flyBack","f1_flyBack_initial","instant",0);
-		a.tweenClass("f1_flyFront","f1_flyFront_initial","instant",0);
+		a.tweenClass("f1_bkg","opaque", 0 ,"instant");
 		a.nextFrameInTimeLine(0.1); // fix for explorer
 	}
 
 	function f_firstFrame(){
-		a.tweenClass("black_bkg","transparent","normal",0.3);
-		a.tweenClass("f1_flyBack","f1_flyBack_final","verySlow",0.1);
-		a.tweenClass("f1_flyFront","f1_flyFront_final","verySlow",0.1);
-		a.tweenClass("f1_html5","f1_html5_initial","instant",2);
-		a.tweenClass("f1_html5","f1_html5_final","boing",2.2);
-		a.tweenClass("f1_banner","f1_banner_initial","instant",3);
-		a.tweenClass("f1_banner","f1_banner_final","boing",3.2);
-		a.tweenClass("f1_ads","f1_ads_initial","instant",4);
-		a.tweenClass("f1_ads","f1_ads_final","boing",4.2);
-		a.tweenClass("f1_copy1","f1_copy_in","instant",5);
-		a.tweenClass("f1_copy1","f1_copy_stay","quick_out",5.2);
-		a.tweenClass("f1_copy1","f1_copy_out","quick_in",8);
-		a.tweenClass("f1_copy2","f1_copy_in","instant",8);
-		a.tweenClass("f1_copy2","f1_copy_stay","quick_out",8.75);
-		a.tweenClass("f1_copy2","f1_copy_out","quick_in",10);
-		a.tweenClass("black_bkg","opaque","normal",11);
+		a.tweenClass("black_bkg","transparent", 0.3 ,"normal");
+		a.tweenClass("f1_flyBack","f1_flyBack_initial", 0 ,"instant");
+		a.tweenClass("f1_flyBack","f1_flyBack_final", 0.1 , "verySlow");
+
+		a.tweenClass("f1_flyFront","f1_flyFront_initial",0 ,"instant");
+		a.tweenClass("f1_flyFront","f1_flyFront_final", 0.1 ,"verySlow");
+
+		a.tweenClass("f1_html5","f1_html5_initial",2,"instant");
+		a.tweenClass("f1_html5","f1_html5_final",2.2,"boing");
+
+		a.tweenClass("f1_banner","f1_banner_initial",3,"instant");
+		a.tweenClass("f1_banner","f1_banner_final",3.2,"boing");
+
+		a.tweenClass("f1_ads","f1_ads_initial",4,"instant");
+		a.tweenClass("f1_ads","f1_ads_final",4.2,"boing");
+
+/*
+		a.tweenClass("f1_copy1","f1_copy_in",5,"instant");
+		a.tweenClass("f1_copy1","f1_copy_stay",5.2,"quick_out");
+		a.tweenClass("f1_copy1","f1_copy_out",8,"quick_in");
+		a.tweenClass("f1_copy2","f1_copy_in",8,"instant");
+		a.tweenClass("f1_copy2","f1_copy_stay",8.75,"quick_out");
+		a.tweenClass("f1_copy2","f1_copy_out",10,"quick_in");
+		*/
+		a.animate("f1_copy1",[ ["f1_copy_in" , 5 ] , ["f1_copy_stay" , 5 , "quick_out"] , ["f1_copy_out" , 7.5 , "quick_in"] ])
+		a.animate("f1_copy2",[ ["f1_copy_in" , 8 ] , ["f1_copy_stay" , 8 , "quick_out"] , ["f1_copy_out" , 10.5 , "quick_in"] ])
+		//a.animate("f1_copy2",["f1_copy_in"])
+
+		a.tweenClass("black_bkg","opaque",11,"normal");
 		a.nextFrameInTimeLine(12);
 	}	
 	
 	function f_secondFrame(){
 
-		a.tweenClass("f2_bkg","opaque","instant",0);
+		a.tweenClass("f2_bkg","opaque",0,"instant");
 		a.clearClass("f2_scanline");
 		a.clearClass("noise");
 		a.clearClass("f2_border");
 
-		a.tweenClass("black_bkg","transparent","normal",0.2);
-		a.tweenClass("noise","f2_noise_initial","instant",.1);
-		a.tweenClass("f2_content","f2_content_initial","instant",.4);
-		a.tweenClass("f2_content","f2_content_final","verySlow",.6);
-		a.tweenClass("noise","f2_noise_final","slow",0.1);
-		a.tweenClass("noise","f2_noise_initial","instant",5.2);
-		a.tweenClass("noise","f2_noise_final","slow",5.5);
-		a.tweenClass("noise","f2_noise_initial","instant",10.2);
-		a.tweenClass("noise","f2_noise_final","slow",10.5);
-		a.tweenClass("noise","f2_noise_initial","instant",15.2);
-		a.tweenClass("noise","f2_noise_final","slow",15.5);
-		a.tweenClass("black_bkg","opaque","normal",18.5);
+		a.tweenClass("black_bkg","transparent",0.2,"normal");
+		a.tweenClass("noise","f2_noise_initial",0.1,"instant");
+		a.tweenClass("f2_content","f2_content_initial",0.4,"instant");
+		a.tweenClass("f2_content","f2_content_final",0.6,"verySlow");
+		a.tweenClass("noise","f2_noise_final",0.1,"slow");
+		a.tweenClass("noise","f2_noise_initial",5.2,"instant");
+		a.tweenClass("noise","f2_noise_final",5.5,"slow");
+		a.tweenClass("noise","f2_noise_initial",10.2,"instant");
+		a.tweenClass("noise","f2_noise_final",10.5,"slow");
+		a.tweenClass("noise","f2_noise_initial",15.2,"instant");
+		a.tweenClass("noise","f2_noise_final",15.5,"slow");
+		a.tweenClass("black_bkg","opaque",18.5,"normal");
 		a.nextFrameInTimeLine(19.5);
 		
 	}
@@ -218,19 +236,19 @@
 		a.clearClass("text1_container");
 		a.clearClass("text1");
 		a.clearClass("f3_scanline");
-		a.tweenClass("f3_bkg","f3_bkg_initial","instant",0.1);
-		a.tweenClass("text1_container","f3_text1_container_out","instant",0.1);
-		a.tweenClass("f3_CTA","f3_CTA_initial","instant",0.3);
-		a.tweenClass("f3_codeinTop","f3_code_initial","instant",0.1);
-		a.tweenClass("f3_codeinBot","f3_code_initial","instant",0.1);
-		a.tweenClass("f3_codeinTop","f3_code_final","verySlow",0.2);
-		a.tweenClass("f3_codeinBot","f3_code_final","verySlow",0.2);
-		a.tweenClass("f3_bkg","f3_bkg_final","verySlow",0.5);
+		a.tweenClass("f3_bkg","f3_bkg_initial",0.1,"instant");
+		a.tweenClass("text1_container","f3_text1_container_out",0.1,"instant");
+		a.tweenClass("f3_CTA","f3_CTA_initial",0.3,"instant");
+		a.tweenClass("f3_codeinTop","f3_code_initial",0.1,"instant");
+		a.tweenClass("f3_codeinBot","f3_code_initial",0.1,"instant");
+		a.tweenClass("f3_codeinTop","f3_code_final",0.2,"verySlow");
+		a.tweenClass("f3_codeinBot","f3_code_final",0.2,"verySlow");
+		a.tweenClass("f3_bkg","f3_bkg_final",0.5,"verySlow");
 
-		a.tweenClass("black_bkg","transparent","normal",0.6);
+		a.tweenClass("black_bkg","transparent",0.6,"normal");
 
-		a.tweenClass("f3_CTA","f3_CTA_final","slowBoing",1.5);
-		a.tweenClass("text1_container","f3_text1_container_in","slowBoing",2.75);
+		a.tweenClass("f3_CTA","f3_CTA_final",1.5,"slowBoing");
+		a.tweenClass("text1_container","f3_text1_container_in",2.75,"slowBoing");
 
 		if(a.loop>0){
 			a.loop--;
@@ -261,7 +279,7 @@
 
 	}
 	function f_loopOut(){
-		a.tweenClass("black_bkg","opaque","normal",0.1);
+		a.tweenClass("black_bkg","opaque",0.1,"normal");
 		a.currentFrameIndex=-1; // index of "f_loop_in"
 		a.nextFrameInTimeLine(1);
 	}
