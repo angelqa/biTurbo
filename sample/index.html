@@ -198,9 +198,9 @@ transform: translateY(-4px);
 		a.tweenClass("f1_copy2","f1_copy_stay",8.75,"quick_out");
 		a.tweenClass("f1_copy2","f1_copy_out",10,"quick_in");
 		*/
-		a.animate("f1_copy1",[ ["f1_copy_in" , 5 ] , ["f1_copy_stay" , 5 , "quick_out"] , ["f1_copy_out" , 7.5 , "quick_in"] ])
-		a.animate("f1_copy2",[ ["f1_copy_in" , 8 ] , ["f1_copy_stay" , 8 , "quick_out"] , ["f1_copy_out" , 10.5 , "quick_in"] ])
-		//a.animate("f1_copy2",["f1_copy_in"])
+		a.animateClass("f1_copy1",[ ["f1_copy_in" , 5 ] , ["f1_copy_stay" , 5 , "quick_out"] , ["f1_copy_out" , 7.5 , "quick_in"] ]);
+		a.animateClass("f1_copy2",[ ["f1_copy_in" , 8 ] , ["f1_copy_stay" , 8 , "quick_out"] , ["f1_copy_out" , 10.5 , "quick_in"] ]);
+		//a.animateClass("f1_copy2",["f1_copy_in"])
 
 		a.tweenClass("black_bkg","opaque",11,"normal");
 		a.nextFrameInTimeLine(12);
@@ -209,14 +209,18 @@ transform: translateY(-4px);
 	function f_secondFrame(){
 
 		a.tweenClass("f2_bkg","opaque",0,"instant");
+		/*
 		a.clearClass("f2_scanline");
 		a.clearClass("noise");
 		a.clearClass("f2_border");
+		*/
+		a.multipleClearClass(["f2_scanline" , "noise" , "f2_border"]);
 
 		a.tweenClass("black_bkg","transparent",0.2,"normal");
 		a.tweenClass("noise","f2_noise_initial",0.1,"instant");
 		a.tweenClass("f2_content","f2_content_initial",0.4,"instant");
 		a.tweenClass("f2_content","f2_content_final",0.6,"verySlow");
+		/*
 		a.tweenClass("noise","f2_noise_final",0.1,"slow");
 		a.tweenClass("noise","f2_noise_initial",5.2,"instant");
 		a.tweenClass("noise","f2_noise_final",5.5,"slow");
@@ -224,6 +228,9 @@ transform: translateY(-4px);
 		a.tweenClass("noise","f2_noise_final",10.5,"slow");
 		a.tweenClass("noise","f2_noise_initial",15.2,"instant");
 		a.tweenClass("noise","f2_noise_final",15.5,"slow");
+		*/
+		a.animateClass("noise",[ ["f2_noise_final" , 0.1 , "slow" ] , ["f2_noise_initial" , 5.2 ] ,  ["f2_noise_final" , 5.5 , "slow" ] , ["f2_noise_initial" , 10.2 ] , ["f2_noise_final" , 10.5 , "slow" ] , ["f2_noise_initial" , 15.2] , ["f2_noise_final" , 15.5 , "slow" ] ]);
+
 		a.tweenClass("black_bkg","opaque",18.5,"normal");
 		a.nextFrameInTimeLine(19.5);
 		
@@ -266,6 +273,7 @@ transform: translateY(-4px);
 		a.clearClass("text1_container");
 		a.clearClass("text1");
 		a.clearClass("f3_scanline");
+
 		a.applyClass("f3_codeinTop","f3_code_final");
 		a.applyClass("f3_codeinBot","f3_code_final");
 		a.applyClass("f3_bkg","f3_bkg_final");
