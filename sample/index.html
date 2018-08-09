@@ -70,8 +70,9 @@
 	a.createDivElement("f3_scanline","img/scanline10.png",a.acc_CSS(0.25,0,0,300,900));
 	a.createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a.width + "px ; height:" + a.height + "px"),true);
 
-	//a.setBTN("clickable element name","clickTag Function name","the name of the last frame of the animation to goto on click")
-	a.setBTN("a_banner_elements","ext_clickTag","f_clickedFrame"); // clickable button
+	//a.setBTN("clickable element name","click user Function name", bool:stopsTheCreative? , "the name of the last frame of the animation to goto on click")
+	//a.setBTN("a_banner_elements","ext_clickTag" , true , "f_clickedFrame"); // clickable button
+	a.setBTN("a_banner_elements","ext_clickTag" ); // clickable button
 	//a.createBorder("color",width)
 	a.createBorder("#4ff",2); // creative external frame border
 
@@ -149,7 +150,7 @@
 	//define a function for each frame in timeline
 	function f_initFrame(){	//define init frame
 		//a.tweenClass("id","nameOfclass","nameOftween",delay)
-		a.clearClassToAll();
+		//a.clearClassToAll();
 		a.applyClassToAll("invisible");
 		a.applyClass("black_bkg","opaque");
 
@@ -238,6 +239,7 @@
 	}
 
 	function f_clickedFrame(){
+		console.log("f_clickedFrame")
 		a.applyClassToAll("invisible");
 		a.clearClass("f3_bkg");
 		a.clearClass("f3_CTA");
@@ -246,16 +248,16 @@
 		a.clearClass("text1_container");
 		a.clearClass("text1");
 		a.clearClass("f3_scanline");
-		a.tweenClass("f3_codeinTop","f3_code_final","instant",0.2);
-		a.tweenClass("f3_codeinBot","f3_code_final","instant",0.2);
-		a.tweenClass("f3_bkg","f3_bkg_final","instant",0.2);
+		a.applyClass("f3_codeinTop","f3_code_final");
+		a.applyClass("f3_codeinBot","f3_code_final");
+		a.applyClass("f3_bkg","f3_bkg_final");
 
 		a.applyClass("black_bkg","invisible");
 
 
-		a.tweenClass("f3_CTA","f3_CTA_final","instant",0.2);
-		a.tweenClass("text1_container","f3_text1_container_in","instant",0.2);
-		a.setTimeLine("f_clickedFrame");
+		a.applyClass("f3_CTA","f3_CTA_final");
+		a.applyClass("text1_container","f3_text1_container_in");
+		//a.setTimeLine("f_clickedFrame");
 
 	}
 	function f_loopOut(){
