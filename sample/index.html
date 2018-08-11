@@ -217,10 +217,15 @@ transform: translateY(-4px);
 		a.multipleClearClass(["f2_scanline" , "noise" , "f2_border"]);
 
 		a.tweenClass("black_bkg","transparent",0.2,"normal");
-		a.tweenClass("noise","f2_noise_initial",0.1,"instant");
+		//a.tweenClass("noise","f2_noise_initial",0.1,"instant");
 		a.tweenClass("f2_content","f2_content_initial",0.4,"instant");
 		a.tweenClass("f2_content","f2_content_final",0.6,"verySlow");
-		/*
+		
+		// for ways of making a repeated animation for an element
+		
+		/* 
+		// #1  Each keyframe in it's exact time
+		a.tweenClass("noise","f2_noise_initial",0,"instant");
 		a.tweenClass("noise","f2_noise_final",0.1,"slow");
 		a.tweenClass("noise","f2_noise_initial",5.2,"instant");
 		a.tweenClass("noise","f2_noise_final",5.5,"slow");
@@ -229,7 +234,31 @@ transform: translateY(-4px);
 		a.tweenClass("noise","f2_noise_initial",15.2,"instant");
 		a.tweenClass("noise","f2_noise_final",15.5,"slow");
 		*/
-		a.animateClass("noise",[ ["f2_noise_final" , 0.1 , "slow" ] , ["f2_noise_initial" , 5.2 ] ,  ["f2_noise_final" , 5.5 , "slow" ] , ["f2_noise_initial" , 10.2 ] , ["f2_noise_final" , 10.5 , "slow" ] , ["f2_noise_initial" , 15.2] , ["f2_noise_final" , 15.5 , "slow" ] ]);
+
+		// #2   One animation keyframe Array with each time
+		//a.animateClass("noise",[ ["f2_noise_final" , 0.1 , "slow" ] , ["f2_noise_initial" , 5.2 ] ,  ["f2_noise_final" , 5.5 , "slow" ] , ["f2_noise_initial" , 10.2 ] , ["f2_noise_final" , 10.5 , "slow" ] , ["f2_noise_initial" , 15.2] , ["f2_noise_final" , 15.5 , "slow" ] ]);
+		
+
+
+
+		/* 
+		// #3   One animation keyframeArray per each pair ok keyframe
+		a.animateClass("noise",[ ["f2_noise_initial" , 0.1 ] ,  ["f2_noise_final" , null , "slow" ] ]);
+		a.animateClass("noise",[ ["f2_noise_initial" , 5.2 ] ,  ["f2_noise_final" , null , "slow" ] ]);
+		a.animateClass("noise",[ ["f2_noise_initial" , 10.2 ] , ["f2_noise_final" , 10.2 , "slow" ] ]);
+		a.animateClass("noise",[ ["f2_noise_initial" , 15.2] , ["f2_noise_final" , 15.2 , "slow" ] ]);
+		*/
+		
+
+		// #4   Create needed animations with dynamic values
+		var i=0
+		var b=0
+		for(i = 0 ; i < 4 ; i++){
+			b=(i*5)+0.1
+			a.animateClass("noise",[ ["f2_noise_initial" , b , "instant"] ,  ["f2_noise_final" , b , "slow" ] ]);
+		}
+		
+
 
 		a.tweenClass("black_bkg","opaque",18.5,"normal");
 		a.nextFrameInTimeLine(19.5);
