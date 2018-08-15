@@ -17,6 +17,9 @@
 	function ext_clickTag(){
 		window.open("https://github.com/angelqa/biTurbo");
 	}
+	function pajaroSSEnded(){
+		alert("el Pájaro ya ha volado todo lo que tenía que volar")
+	}
 </script>
 <script type="text/javascript">
 	
@@ -38,6 +41,23 @@
 	//a.acc_CSS(alpha,x,y,w,h) is a helper function to quickly write commonly used css styles
 
 	//Frame 1 Elements
+	var pajaro={
+		htmlElement : "div_pajaro",
+		source : "img/loro_21f_512.png",
+		currentFrame : 1,
+		totalFrames : 21,
+		framesToPlay : 5*21 ,
+		frameDuration : 1000/20 ,
+		width : 362/4 ,
+		height : 373/4 ,
+		col : 5 ,
+		rows : 5 ,
+		positionX : 0 ,
+		positionY : 0 ,
+		functionOnEnd : "pajaroSSEnded" ,
+		verbose : true
+	};
+	
 
 	a.createDivElement("f1_bkg","img/bkg1.jpg");
 	a.createDivElement("f1_flyBack","img/flying_letters.png",a.CSS({a:0.5 , t:50 , w:4016}));
@@ -47,6 +67,7 @@
 	a.createDivElement("f1_ads","img/ads.png",a.CSS({l:180 , t:220}));
 	a.createDivElement("f1_copy1","img/copy1.png",a.CSS({l:22 , t:354}));
 	a.createDivElement("f1_copy2","img/copy2.png",a.CSS({l:56 , t:354}));
+	a.createSpriteSheet(pajaro);
 	//Frame 2 Elements
 	a.createDivElement("f2_bkg","img/bkg2.jpg");
 	a.createDivElement("f2_content","img/copyF2.png",a.CSS({a:0.9}));
@@ -84,6 +105,9 @@
 	a.createClass("visible","display:block ; ");
 
 	a.createClass("a_banner_elements_mask",("overflow: hidden; width: "+ a.width +"px; height: "+ a.height + "px;display: block; position: absolute; margin: 0px;left: 0px; top: 0px;"));
+	a.createClass("f1_pajaro_initial" , a.CSS({s:1 , y:0 , x:-200}));
+	a.createClass("f1_pajaro_final" , a.CSS({s:5 , y:100 , x:550}));
+	
 	a.createClass("f1_html5_initial" , a.CSS({a:0 , s:0.02 , y:130}));
 	a.createClass("f1_html5_final" , a.CSS({a:1 , s:1 , y:0}));
 	a.createClass("f1_banner_initial" , a.CSS({a:0 ,s:0.02 ,y:90}));
@@ -156,7 +180,13 @@
 	}
 
 	function f_firstFrame(){
+		a.clearClass("div_pajaro");
+		a.playSpriteSheet(pajaro,1,1,4*21,-1); // object setup, delay, init frame, frames to play, direction
+
 		a.tweenClass("black_bkg","transparent", 0.3 ,"normal");
+		
+		a.tweenClass("div_pajaro_container","f1_pajaro_initial", 0.1 ,"instant");
+		a.tweenClass("div_pajaro_container","f1_pajaro_final", 1 ,"slow");
 
 		a.tweenClass("f1_flyBack","f1_flyBack_initial", 0 ,"instant");
 		a.tweenClass("f1_flyBack","f1_flyBack_final", 0.1 , "verySlow");
