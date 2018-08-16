@@ -18,7 +18,8 @@
 		window.open("https://github.com/angelqa/biTurbo");
 	}
 	function pajaroSSEnded(){
-		alert("el Pájaro ya ha volado todo lo que tenía que volar")
+		//alert("el Pájaro ya ha volado todo lo que tenía que volar")
+		a.playSpriteSheet(pajaro,0,15,21,1); // object setup, delay, init frame, frames to play, direction
 	}
 </script>
 <script type="text/javascript">
@@ -54,7 +55,6 @@
 		rows : 5 ,
 		positionX : 0 ,
 		positionY : 0 ,
-		functionOnEnd : "pajaroSSEnded" ,
 		verbose : true
 	};
 	
@@ -106,7 +106,7 @@
 
 	a.createClass("a_banner_elements_mask",("overflow: hidden; width: "+ a.width +"px; height: "+ a.height + "px;display: block; position: absolute; margin: 0px;left: 0px; top: 0px;"));
 	a.createClass("f1_pajaro_initial" , a.CSS({s:1 , y:0 , x:-200}));
-	a.createClass("f1_pajaro_final" , a.CSS({s:5 , y:100 , x:550}));
+	a.createClass("f1_pajaro_final" , a.CSS({s:5 , y:100 , x:250}));
 	
 	a.createClass("f1_html5_initial" , a.CSS({a:0 , s:0.02 , y:130}));
 	a.createClass("f1_html5_final" , a.CSS({a:1 , s:1 , y:0}));
@@ -181,12 +181,12 @@
 
 	function f_firstFrame(){
 		a.clearClass("div_pajaro");
-		a.playSpriteSheet(pajaro,1,1,4*21,-1); // object setup, delay, init frame, frames to play, direction
+		a.playSpriteSheet(pajaro,1,1,4*15,-1,"pajaroSSEnded"); // object setup, delay, init frame, frames to play, direction
 
 		a.tweenClass("black_bkg","transparent", 0.3 ,"normal");
 		
-		a.tweenClass("div_pajaro_container","f1_pajaro_initial", 0.1 ,"instant");
-		a.tweenClass("div_pajaro_container","f1_pajaro_final", 1 ,"slow");
+		a.tweenClass("div_pajaro","f1_pajaro_initial", 0.1 ,"instant");
+		a.tweenClass("div_pajaro","f1_pajaro_final", 1 ,"slow");
 
 		a.tweenClass("f1_flyBack","f1_flyBack_initial", 0 ,"instant");
 		a.tweenClass("f1_flyBack","f1_flyBack_final", 0.1 , "verySlow");
