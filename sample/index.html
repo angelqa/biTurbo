@@ -33,8 +33,24 @@
 
 	// 1 add html elements
 
-	a.initStyle();
-	a.startWhenLoadedEnough();
+	a.init("banner_a");
+	a.preload(false);
+	
+
+	var b = biTurbo.create() ;
+	b.width = 300;
+	b.height = 600;
+	b.debug = true
+	b.loop = 1;
+	b.insertionPoint = 'a_banner_elements';
+
+	// 1 add html elements
+
+	b.init("banner_b");
+	b.preload(false);
+	b.createDivElement("f1_flyBack","img/flying_letters.png",a.CSS({a:0.5 , t:50 , w:4016}));
+	b.createDivElement("f1_flyFront","img/flying_letters.png",a.CSS({a:0.7 , t:20 , w:4016}));
+	b.createDivElement("f1_html5","img/html5.png",a.CSS({l:50 , t:125}));
 	
 	//  CREATE HTML ELEMENTS
 
