@@ -11,6 +11,7 @@
 <body> 
 
 <div id="a_banner_elements" ></div>
+<div id="b_banner_elements" ></div>
 
 
 <script type="text/javascript">
@@ -34,15 +35,14 @@
 	// 1 add html elements
 
 	a.init("banner_a");
-	a.preload(false);
-	
-
+	a.preload(true);
+/*
 	var b = biTurbo.create() ;
 	b.width = 300;
 	b.height = 600;
 	b.debug = true
 	b.loop = 1;
-	b.insertionPoint = 'a_banner_elements';
+	b.insertionPoint = 'b_banner_elements';
 
 	// 1 add html elements
 
@@ -51,7 +51,7 @@
 	b.createDivElement("f1_flyBack","img/flying_letters.png",a.CSS({a:0.5 , t:50 , w:4016}));
 	b.createDivElement("f1_flyFront","img/flying_letters.png",a.CSS({a:0.7 , t:20 , w:4016}));
 	b.createDivElement("f1_html5","img/html5.png",a.CSS({l:50 , t:125}));
-	
+*/	
 	//  CREATE HTML ELEMENTS
 
 	//a.createDivElement("id_name","CSS styles") creates html dom elements with some initial styling
@@ -109,6 +109,7 @@
 	a.createBorder("#4ff",2); // creative external frame border
 
 	
+	
 
 
 
@@ -126,6 +127,7 @@
 	
 	a.createClass("f1_html5_initial" , a.CSS({a:0 , s:0.02 , y:130}));
 	a.createClass("f1_html5_final" , a.CSS({a:1 , s:1 , y:0}));
+
 	a.createClass("f1_banner_initial" , a.CSS({a:0 ,s:0.02 ,y:90}));
 	a.createClass("f1_banner_final" , a.CSS({a:1 , s:1 , y:0}));
 	a.createClass("f1_ads_initial" , a.CSS({a:0 , r:120 , s:9 , x:-400 , y:130}));
