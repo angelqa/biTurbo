@@ -59,16 +59,15 @@
 
 	//Frame 1 Elements
 	var pajaro={
-		htmlElement : "div_pajaro",
+		htmlElementName : "div_pajaro",
 		source : "img/loro_21f_512.png",
 		currentFrame : 1,
-		totalFrames : 21,
 		framesToPlay : 5*21 ,
 		frameDuration : 1000/20 ,
-		width : 362/4 ,
-		height : 373/4 ,
-		col : 5 ,
-		rows : 5 ,
+		frameWidth : 90 ,
+		frameHeight : 93 ,
+		totalFrames : 21,
+		frameColumns : 5 ,
 		positionX : 0 ,
 		positionY : 0 ,
 		verbose : true
@@ -175,14 +174,14 @@
 
 	//	SETUP the initial classes for all elements
 	a.applyClass("a_banner_elements", "a_banner_elements_mask"); // hides elements outside the banner size
-	a.applyClassToAll("invisible");
+	a.applyClass(null,"invisible");
 	a.applyClass("black_bkg","opaque");
 
 
 	//define a function for each frame in timeline
 	function f_initFrame(){	//define init frame
 		//a.tweenClass("id","nameOfclass", delay , "nameOftween")
-		a.applyClassToAll("invisible");
+		a.applyClass(null,"invisible");
 		a.applyClass("black_bkg","opaque");
 
 		a.tweenClass("f1_bkg","opaque", 0 ,"instant");
@@ -237,7 +236,7 @@
 		a.clearClass("noise");
 		a.clearClass("f2_border");
 		*/
-		a.multipleClearClass(["f2_scanline" , "noise" , "f2_border"]);
+		a.clearClass(["f2_scanline" , "noise" , "f2_border"]);
 
 		a.tweenClass("black_bkg","transparent",0.2,"normal");
 		//a.tweenClass("noise","f2_noise_initial",0.1,"instant");
@@ -288,7 +287,7 @@
 		
 	}
 	function f_thirdFrame(){
-		a.multipleClearClass(["f3_bkg" , "f3_CTA" , "f3_codeinTop" , "f3_codeinBot" , "text1_container" , "text1" , "f3_scanline"]);
+		a.clearClass(["f3_bkg" , "f3_CTA" , "f3_codeinTop" , "f3_codeinBot" , "text1_container" , "text1" , "f3_scanline"]);
 
 		a.tweenClass("f3_bkg","f3_bkg_initial",0.1,"instant");
 		a.tweenClass("f3_bkg","f3_bkg_final",0.5,"verySlow");
@@ -325,8 +324,10 @@
 
 	function f_clickedFrame(){ //this frame is displayed to stop the banner when user clicks on cta
 		console.log("f_clickedFrame")
-		a.applyClassToAll("invisible");
-		a.multipleClearClass(["f3_bkg" , "f3_CTA" , "f3_codeinTop" , "f3_codeinBot" , "text1_container" , "text1" , "f3_scanline"]);
+		//a.applyClassToAll("invisible");
+		a.applyClass(null,"invisible");
+		a.clearClass(["f3_bkg" , "f3_CTA" , "f3_codeinTop" , "f3_codeinBot" , "text1_container" , "text1" , "f3_scanline"]);
+		//a.clearClass();
 		a.applyClass("f3_codeinTop","f3_code_final");
 		a.applyClass("f3_codeinBot","f3_code_final");
 		a.applyClass("f3_bkg","f3_bkg_final");
