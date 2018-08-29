@@ -20,7 +20,7 @@
 	}
 	function pajaroSSEnded(){
 		//alert("el Pájaro ya ha volado todo lo que tenía que volar")
-		a.playSpriteSheet(pajaro,0,15,21,1); // object setup, delay, init frame, frames to play, direction
+		//a.playSpriteSheet(pajaro,0,15,21,1); // object setup, delay, init frame, frames to play, direction
 	}
 </script>
 <script type="text/javascript">
@@ -63,7 +63,7 @@
 		source : "img/loro_21f_512.png",
 		currentFrame : 1,
 		framesToPlay : 5*21 ,
-		frameDuration : 1000/20 ,
+		frameDuration : 1000/25 ,
 		frameWidth : 90 ,
 		frameHeight : 93 ,
 		totalFrames : 21,
@@ -72,7 +72,21 @@
 		positionY : 0 ,
 		verbose : true
 	};
-	
+
+	var pajaro2={
+		htmlElementName : "div_pajaro2",
+		source : "img/loro_21f_512.png",
+		currentFrame : 1,
+		framesToPlay : 5*21 ,
+		frameDuration : 1000/25 ,
+		frameWidth : 90 ,
+		frameHeight : 93 ,
+		totalFrames : 21,
+		frameColumns : 5 ,
+		positionX : 0 ,
+		positionY : 0 ,
+		verbose : true
+	};
 
 	a.createDivElement("f1_bkg","img/bkg1.jpg");
 	a.createDivElement("f1_flyBack","img/flying_letters.png",a.CSS({a:0.5 , t:50 , w:4016}));
@@ -82,7 +96,6 @@
 	a.createDivElement("f1_ads","img/ads.png",a.CSS({l:180 , t:220}));
 	a.createDivElement("f1_copy1","img/copy1.png",a.CSS({l:22 , t:354}));
 	a.createDivElement("f1_copy2","img/copy2.png",a.CSS({l:56 , t:354}));
-	a.createSpriteSheet(pajaro);
 	//Frame 2 Elements
 	a.createDivElement("f2_bkg","img/bkg2.jpg");
 	a.createDivElement("f2_content","img/copyF2.png",a.CSS({a:0.9}));
@@ -93,11 +106,13 @@
 	a.addImagesToPreloadQueue = false; //stop the preload queue at the first frame assets
 	//Frame 3 Elements
 	a.createDivElement("f3_bkg","img/bkg3.png");
+	a.createSpriteSheet(pajaro);
+	a.createSpriteSheet(pajaro2);
 	a.createDivElement("f3_CTA","img/cta.png",a.CSS({a:1 , l:55 , t:250}));
 	//a.createDivElement("f3_CTA","img/cta.png",a.CSS({a:1 , l:55 , t:250})+ " z-index : 5; "); // intesresting for :hover
 	a.createDivElement("f3_codeinTop","img/codein.png",a.CSS({w:4016}));
 	a.createDivElement("f3_codeinBot","img/codein.png",a.CSS({t:566 , w:4016}));
-	a.createTextElement("text1", "(^.^)", "color: #fff; font-size: 23px;"); // primitive support for adding text with custom css. Text elements are created nested inside an automatically created div called with the same name+"_container"
+	a.createTextElement("text1", "v1.0", "color: #fff; font-size: 23px;"); // primitive support for adding text with custom css. Text elements are created nested inside an automatically created div called with the same name+"_container"
 	a.createDivElement("f3_scanline","img/scanline10.png",a.CSS({a:0.25 , w:300 ,h:600}));
 	a.createDivElement("black_bkg","",("opacity:1 ; left:0px ; top:0px ; background-color:black ; width:" + a.width + "px ; height:" + a.height + "px ; " ),true);
 
@@ -121,8 +136,6 @@
 	a.createClass("visible","display:block ; ");
 
 	a.createClass("a_banner_elements_mask",("overflow: hidden; width: "+ a.width +"px; height: "+ a.height + "px;display: block; position: absolute; margin: 0px;left: 0px; top: 0px;"));
-	a.createClass("f1_pajaro_initial" , a.CSS({s:1 , y:0 , x:-200}));
-	a.createClass("f1_pajaro_final" , a.CSS({s:5 , y:100 , x:250}));
 	
 	a.createClass("f1_html5_initial" , a.CSS({a:0 , s:0.02 , y:130}));
 	a.createClass("f1_html5_final" , a.CSS({a:1 , s:1 , y:0}));
@@ -146,6 +159,15 @@
 
 	a.createClass("f3_text1_container_out" , a.CSS({a:0.5 , l:-128 , t:200}));
 	a.createClass("f3_text1_container_in" , a.CSS({a:1 , l:128 , t:200}));
+	
+	a.createClass("f1_pajaro_initial" , a.CSS({s:2 , y:200 , x:-200}));
+	a.createClass("f1_pajaro_final" , a.CSS({s:2 , y:0 , x:350}));
+	a.createClass("f1_pajaro_final2" , a.CSS({s:2 , y:600 , x:350}));
+
+	a.createClass("f1_pajaro2_initial" , a.CSS({sx:-2 , sy:2 , y:200 , x:400}));
+	a.createClass("f1_pajaro2_final" , a.CSS({sx:-2 , sy:2 , y:0 , x:-150}));
+	a.createClass("f1_pajaro2_final2" , a.CSS({sx:-2 , sy:2 , y:600 , x:-150}));
+	
 	a.createClass("f3_CTA_initial" , a.CSS({r:180 , s:0.005}));
 	a.createClass("f3_CTA_final" , a.CSS({a:1 , r:0 , s:1}));
 	//a.createClass("f3_CTA:hover" , a.CSS({s:1.5})) ; // care about z-index
@@ -197,15 +219,11 @@
 	}
 
 	function f_firstFrame(){
-		a.clearClass("div_pajaro");
-		a.playSpriteSheet(pajaro,1,1,4*15,-1,"pajaroSSEnded"); // object setup, delay, init frame, frames to play, direction
+		
 
 		a.tweenClass("black_bkg","transparent", 0.3 ,"normal");
 		
-		a.tweenClass("div_pajaro","f1_pajaro_initial", 0.1 ,"instant");
-		a.tweenClass("div_pajaro","f1_pajaro_final", 1 ,"slow");
-
-		a.tweenClass("f1_flyBack","f1_flyBack_initial", 0 ,"instant");
+				a.tweenClass("f1_flyBack","f1_flyBack_initial", 0 ,"instant");
 		a.tweenClass("f1_flyBack","f1_flyBack_final", 0.1 , "verySlow");
 
 		a.tweenClass("f1_flyFront","f1_flyFront_initial",0 ,"instant");
@@ -293,6 +311,25 @@
 		a.tweenClass("f3_bkg","f3_bkg_final",0.5,"verySlow");
 
 		a.tweenClass("black_bkg","transparent",0.6,"normal");
+
+		a.clearClass("div_pajaro");
+		a.clearClass("div_pajaro2");
+		
+		a.playSpriteSheet(pajaro,1,1,22*15,1); // object setup, delay, init frame, frames to play, direction
+		a.playSpriteSheet(pajaro2,1,1,22*15,1); // object setup, delay, init frame, frames to play, direction
+		
+		a.tweenClass("div_pajaro","f1_pajaro_initial", 0.1 ,"instant");
+		a.tweenClass("div_pajaro","f1_pajaro_final", 2 ,"slow");
+
+		a.tweenClass("div_pajaro2","f1_pajaro2_initial", 0.1 ,"instant");
+		a.tweenClass("div_pajaro2","f1_pajaro2_final", 2 ,"slow");
+
+		a.tweenClass("div_pajaro","f1_pajaro_initial", 7.1 ,"instant");
+		a.tweenClass("div_pajaro","f1_pajaro_final2", 8 ,"slow");
+
+		a.tweenClass("div_pajaro2","f1_pajaro2_initial", 7.1 ,"instant");
+		a.tweenClass("div_pajaro2","f1_pajaro2_final2", 8 ,"slow");
+
 
 		a.tweenClass("f3_CTA","f3_CTA_initial",0.3,"instant");
 		a.tweenClass("f3_CTA","f3_CTA_final",1.5,"slowBoing");
