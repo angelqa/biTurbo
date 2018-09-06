@@ -22,6 +22,10 @@
 		//alert("el Pájaro ya ha volado todo lo que tenía que volar")
 		//a.playSpriteSheet(pajaro,0,15,21,1); // object setup, delay, init frame, frames to play, direction
 	}
+	function cargado(){
+		console.log("la pieza está cargada, play!")
+		a.play();
+	}
 </script>
 <script type="text/javascript">
 	
@@ -35,7 +39,8 @@
 	// 1 add html elements
 
 	a.init("banner_a");
-	a.preload(true);
+	a.preload(false,"cargado");
+	//a.preload(false);
 /*
 	var b = biTurbo.create() ;
 	b.width = 300;
@@ -107,7 +112,11 @@
 	//Frame 3 Elements
 	a.createDivElement("f3_bkg","img/bkg3.png");
 	a.createSpriteSheet(pajaro);
-	a.createSpriteSheet(pajaro2);
+
+	a.createDivElement("div_pajaro2_Xinv","",("opacity:1 ; left:0px ; top:0px ; background-color: transparent ; overflow: visible ; width:" + a.width + "px ; height:" + a.height + "px ; " ));
+		a.insertionPoint = 'div_pajaro2_Xinv';
+		a.createSpriteSheet(pajaro2);
+	a.insertionPoint = 'a_banner_elements';
 	a.createDivElement("f3_CTA","img/cta.png",a.CSS({a:1 , l:55 , t:250}));
 	//a.createDivElement("f3_CTA","img/cta.png",a.CSS({a:1 , l:55 , t:250})+ " z-index : 5; "); // intesresting for :hover
 	a.createDivElement("f3_codeinTop","img/codein.png",a.CSS({w:4016}));
@@ -164,15 +173,19 @@
 	a.createClass("f1_pajaro_final" , a.CSS({s:2 , y:0 , x:350}));
 	a.createClass("f1_pajaro_final2" , a.CSS({s:2 , y:600 , x:350}));
 
-	a.createClass("f1_pajaro2_initial" , a.CSS({sx:-2 , sy:2 , y:200 , x:400}));
-	a.createClass("f1_pajaro2_final" , a.CSS({sx:-2 , sy:2 , y:0 , x:-150}));
-	a.createClass("f1_pajaro2_final2" , a.CSS({sx:-2 , sy:2 , y:600 , x:-150}));
+	a.createClass("pajaroMirrorX" , a.CSS({ sy:1 , sx:-1}));
+	a.createClass("f1_pajaro2_initial" , a.CSS({s:2 , y:200 , x:-200}));
+	a.createClass("f1_pajaro2_final" , a.CSS({s:2 , y:0 , x:350}));
+	a.createClass("f1_pajaro2_final2" , a.CSS({s:2 , y:600 , x:350}));
+	//a.createClass("f1_pajaro2_initial" , a.CSS({ s:2 , y:200 , x:400}));
+	//a.createClass("f1_pajaro2_final" , a.CSS({ s:2 , y:0 , x:-150}));
+	//a.createClass("f1_pajaro2_final2" , a.CSS({ s:2 , y:600 , x:-150}));
 	
 	a.createClass("f3_CTA_initial" , a.CSS({r:180 , s:0.005}));
-	a.createClass("f3_CTA_final" , a.CSS({a:1 , r:0 , s:1}));
+	a.createClass("f3_CTA_final" , a.CSS({a:1 , r:0 , s:1 }));
 	//a.createClass("f3_CTA:hover" , a.CSS({s:1.5})) ; // care about z-index
-	a.createClass("f3_code_initial" , a.CSS({x:0}));
-	a.createClass("f3_code_final" , a.CSS({x:-1969}));
+	a.createClass("f3_code_initial" , a.CSS({x:0 , sy:21}));
+	a.createClass("f3_code_final" , a.CSS({x:-1969 , sy:1}));
 	a.createClass("f3_bkg_initial" , a.CSS({s:2.5 , y:-250}));
 	a.createClass("f3_bkg_final" , a.CSS({s:1, y:0}));
 
@@ -314,6 +327,9 @@
 
 		a.clearClass("div_pajaro");
 		a.clearClass("div_pajaro2");
+		a.clearClass("div_pajaro2_Xinv");
+		a.applyClass("div_pajaro2_Xinv","pajaroMirrorX");
+
 		
 		a.playSpriteSheet(pajaro,1,1,22*15,1); // object setup, delay, init frame, frames to play, direction
 		a.playSpriteSheet(pajaro2,1,1,22*15,1); // object setup, delay, init frame, frames to play, direction
