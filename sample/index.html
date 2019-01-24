@@ -37,10 +37,12 @@
 	a.insertionPoint = 'a_banner_elements';
 
 	// 1 add html elements
+	a.addImagesToPreloadQueue = true; //stop the preload queue at the first frame assets
 
 	a.init("banner_a");
-	a.preload(false,"cargado");
-	//a.preload(false);
+	//a.preload(true,"cargado");
+	//a.preload(false,"cargado");
+	a.preload(true);
 /*
 	var b = biTurbo.create() ;
 	b.width = 300;
